@@ -1,0 +1,61 @@
+---
+import { getCollection } from "astro:content";
+
+const lang = Astro.url.pathname.startsWith("/es") ? "es" : "en";
+const courses = await getCollection("courses");
+const sortedCourses = courses.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+---
+
+{
+  sortedCourses.map((course) => {
+    const { data } = course;
+    const { title, img, description, url, date } = data;
+    return (
+      <section class="card">
+        <a href={url} target="_blank">
+          <img src={img} alt="Curso" />
+        </a>
+        <h2>{title[lang]}</h2>
+        <p>{description[lang]}</p>
+        <strong>{new Date(date).toLocaleDateString()}</strong>
+      </section>
+    );
+  })
+}
+
+<style>
+  .card {
+    max-width: 184px;
+    background: #baac93;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #000000;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: #000000;
+    margin-bottom: 15px;
+  }
+
+  img {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s;
+  }
+
+  img:hover {
+    transform: scale(1.01);
+    box-shadow: 0px 0px 5px 3px rgba(99, 97, 97, 0.849);
+  }
+</style>

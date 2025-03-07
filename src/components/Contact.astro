@@ -1,0 +1,100 @@
+---
+import { Image } from "astro:assets";
+import isai from "../assets/_C9A0277.webp";
+import GitHub from "../assets/GitHub.svg";
+import LinkedIn from "../assets/LinkedIn.svg";
+import Email from "../assets/Email.svg";
+import Credly from "../assets/Credly.svg";
+import { getLangFromUrl, useTranslations } from "../i18n/utils.ts";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<article>
+  <section>
+    <Image src={isai} alt="Solicitante" />
+  </section>
+  <section>
+    <div style="margin-bottom: 44px;">
+      {t("contact.update")}
+      <span>04/03/2025</span>
+    </div>
+    <button id="downloadBtn" class="btn">{t("contact.download")}</button>
+  </section>
+  <section>
+    <div class="icons">
+      <a href="https://github.com/up210368" aria-label="GitHub" target="_blank"
+        ><GitHub size={40} /></a
+      >
+      <a
+        href="https://www.linkedin.com/in/jorge-isa%C3%AD-l%C3%B3pez-hern%C3%A1ndez-a8032a344/"
+        aria-label="LinkedIn"
+        target="_blank"><LinkedIn size={40} /></a
+      >
+      <a
+        href="mailto:isailohj44@gmail.com?subject=Oferta%20laboral."
+        aria-label="Send Email."
+        target="_blank"><Email size={40} /></a
+      >
+      <a
+        href="https://www.credly.com/users/jorge-isai-lopez-hernandez"
+        aria-label="Curses"
+        target="_blank"><Credly size={40} /></a
+      >
+    </div>
+  </section>
+</article>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("downloadBtn");
+    if (btn) {
+      btn.addEventListener("click", () => {
+        window.open("/Curriculum-Vitae.pdf", "_blank");
+      });
+    }
+  });
+</script>
+
+<style>
+  article {
+    margin: 41px 0px 10px 0px;
+    row-gap: 44px;
+    justify-content: center;
+    align-items: center;
+    max-width: 250px;
+  }
+  section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #1e3650;
+  }
+  img {
+    width: 200px;
+    height: 250px;
+    clip-path: circle(45%);
+    object-fit: cover;
+  }
+  .btn {
+    width: 200px;
+    height: 50px;
+    border: 0;
+    border-radius: 10px;
+    background-color: #1e3650;
+    color: white;
+  }
+  .btn:hover {
+    background-color: #758ca5;
+    cursor: pointer;
+    transform: scale(1.03);
+  }
+  .icons {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 44px;
+  }
+</style>

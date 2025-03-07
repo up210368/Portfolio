@@ -1,0 +1,47 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils.ts";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const descriptionString = t("card.description");
+---
+
+<section>
+  <header>Jorge Isaí López Hernández</header>
+  <div class="card text">
+    <p set:html={descriptionString} />
+  </div>
+</section>
+
+<style>
+  .card {
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    max-width: 950px;
+    height: auto;
+    border-radius: 20px;
+    background-color: #baac93;
+  }
+  header {
+    font-weight: bolder;
+    justify-content: center;
+    font-size: 250%;
+    margin-bottom: 20%;
+  }
+  header,
+  .text {
+    display: flex;
+    word-break: break-word;
+  }
+
+  @media (width <= 430px) {
+    section {
+      min-height: 300px;
+    }
+    .text {
+      display: flex;
+      white-space: break-word;
+    }
+  }
+</style>

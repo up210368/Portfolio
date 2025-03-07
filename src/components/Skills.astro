@@ -1,0 +1,108 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<ul>
+  <li>
+    <a href="https://www.google.com/search?q=Programación" target="_blank"
+      >{t("skills.prog")}</a
+    >
+  </li>
+  <li>
+    <a href="https://www.google.com/search?q=Desarrollo+web" target="_blank"
+      >{t("skills.web")}</a
+    >
+  </li>
+  <li>
+    <a href="https://www.google.com/search?q=React.js" target="_blank"
+      >React.js</a
+    >
+  </li>
+  <li>
+    <a href="https://www.google.com/search?q=JavaScript" target="_blank"
+      >JavaScript</a
+    >
+  </li>
+  <li>
+    <a href="https://www.google.com/search?q=Diseño+web" target="_blank"
+      >{t("skills.design")}</a
+    >
+  </li>
+  <li>
+    <a href="https://www.google.com/search?q=Bases+de+datos" target="_blank"
+      >{t("skills.db")}</a
+    >
+  </li>
+  <li>
+    <a href="https://www.google.com/search?q=MYSQL" target="_blank">MYSQL</a>
+  </li>
+  <li><a href="https://www.google.com/search?q=Git" target="_blank">Git</a></li>
+  <li>
+    <a
+      href="https://www.google.com/search?q=Aplicaciones+moviles"
+      target="_blank">{t("skills.mobile")}</a
+    >
+  </li>
+  <li>
+    <a href="https://www.google.com/search?q=React+Native" target="_blank"
+      >React Native</a
+    >
+  </li>
+  <li>
+    <a
+      href="https://www.google.com/search?q=hojas+de+estilos+en+cascada"
+      target="_blank">{t("skills.css")}</a
+    >
+  </li>
+  <li>
+    <a
+      href="https://www.google.com/search?q=Metodologías+ágiles"
+      target="_blank">{t("skills.method")}</a
+    >
+  </li>
+  <li>
+    <a
+      href="https://www.google.com/search?q=Programación+orientada+a+objetos"
+      target="_blank">{t("skills.OOP")}</a
+    >
+  </li>
+  <li>
+    <a href="https://www.google.com/search?q=Linux" target="_blank">Linux</a>
+  </li>
+  <li>
+    <a href="https://www.google.com/search?q=Python" target="_blank">Python</a>
+  </li>
+  <li>
+    <a href="https://www.google.com/search?q=HTML5" target="_blank">HTML5</a>
+  </li>
+</ul>
+
+<style>
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  li a {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #1e3650;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition:
+      background-color 0.1s,
+      transform 0.2s;
+  }
+
+  li a:hover {
+    background-color: #758ca5;
+    transform: scale(1.03);
+  }
+</style>

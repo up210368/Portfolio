@@ -1,0 +1,29 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils.ts";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/src/assets/_C9A0277.webp" />
+    <title>{t("title")}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    background-color: #fae4be;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+  }
+</style>

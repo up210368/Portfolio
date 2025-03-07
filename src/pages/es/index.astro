@@ -1,0 +1,96 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Card from "../../components/Card.astro";
+import Contact from "../../components/Contact.astro";
+import Navbar from "../../components/Navbar.astro";
+import Projects from "../../components/Projects.astro";
+import Courses from "../../components/Courses.astro";
+import Skills from "../../components/Skills.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout>
+  <Navbar />
+  <main>
+    <article class="person">
+      <Contact />
+      <Card />
+    </article>
+    <h2 class="sub-title">{t("index.projs")}</h2>
+    <article class="projects">
+      <Projects />
+    </article>
+    <h2 class="sub-title">{t("index.cours")}</h2>
+    <article class="courses">
+      <Courses />
+    </article>
+    <h2 class="sub-title">{t("index.skill")}</h2>
+    <article class="skills">
+      <Skills />
+    </article>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: 30px;
+  }
+  .sub-title {
+    color: #1e3650;
+    display: inline-block;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+  }
+  .person {
+    display: grid;
+    grid-template-columns: 25% 1fr;
+    justify-items: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10%;
+    min-height: 100vh;
+    align-items: center;
+  }
+  .courses {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 10%;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .person,
+    .courses {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 430px) {
+    .person,
+    .projects,
+    .courses {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10%;
+      justify-content: center;
+    }
+  }
+</style>

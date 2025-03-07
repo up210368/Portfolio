@@ -1,0 +1,111 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils.ts";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+{
+  projects.map((project) => {
+    const { data } = project;
+    const { title, img, description, github, demo } = data;
+    return (
+      <section class="project-card">
+        <div class="buttons">
+          <a href={demo} class="btn demo-btn" target="_blank">
+            <img src={`/${img}`} alt="Proyecto" />
+          </a>
+        </div>
+        <h2>{title}</h2>
+        <p>{description[lang]}</p>
+        <a href={github} class="btn github-btn" target="_blank">
+          {t("swiper.git")}
+        </a>
+      </section>
+    );
+  })
+}
+
+<style>
+  .project-card {
+    max-width: 390px;
+    background-color: #baac93;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #000000;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #000000;
+    margin-bottom: 15px;
+  }
+
+  img {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s;
+  }
+
+  img:hover {
+    transform: scale(1.01);
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    padding: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition:
+      background 0.3s,
+      transform 0.2s;
+  }
+
+  .demo-btn {
+    background-color: #1e3650;
+    color: white;
+  }
+
+  .demo-btn:hover {
+    background-color: #758ca5;
+    transform: scale(1.05);
+  }
+
+  .github-btn {
+    background-color: #1e3650;
+    color: white;
+  }
+
+  .github-btn:hover {
+    background-color: #758ca5;
+    transform: scale(1.03);
+  }
+
+  @media (max-width: 600px) {
+    .project-card {
+      max-width: 90%;
+    }
+  }
+</style>
