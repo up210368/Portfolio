@@ -13,7 +13,7 @@ const projects = defineCollection({
 const courses = defineCollection({
     schema: z.object({
         title: z.string(),
-        img: z.string().url(),
+        img: z.string(),
         description: z.string(),
         url: z.string().url().optional(),
         date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/)
